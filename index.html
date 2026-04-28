@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayomide Gold Empire</title>
+    <style>
+        :root { --gold: #D4AF37; --bg: #0a0a0a; }
+        body { background: var(--bg); color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; text-align: center; }
+        
+        header { padding: 40px; border-bottom: 3px solid var(--gold); margin-bottom: 20px; }
+        h1 { color: var(--gold); margin: 0; letter-spacing: 2px; }
+
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 25px; 
+            padding: 20px; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        
+        .card { 
+            background: #1a1a1a; 
+            border-radius: 15px; 
+            overflow: hidden; 
+            border: 1px solid #333; 
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            cursor: pointer; 
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+        }
+        
+        .card img { width: 100%; height: 250px; object-fit: cover; display: block; }
+        .card h3 { padding: 15px; margin: 0; font-size: 1.2rem; }
+        
+        .modal { 
+            position: fixed; 
+            top: 0; left: 0; 
+            width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.85); 
+            display: none; 
+            align-items: center; 
+            justify-content: center; 
+            z-index: 1000;
+        }
+
+        .modal-content { 
+            background: #222; 
+            padding: 40px 20px; 
+            border-radius: 20px; 
+            border: 2px solid var(--gold); 
+            width: 90%; 
+            max-width: 350px; 
+            position: relative;
+        }
+
+        .order-btn { 
+            background: var(--gold); 
+            color: black; 
+            padding: 15px 25px; 
+            text-decoration: none; 
+            border-radius: 50px; 
+            font-weight: bold; 
+            display: inline-block; 
+            margin-top: 20px;
+            transition: opacity 0.2s;
+        }
+
+        .order-btn:hover { opacity: 0.8; }
+
+        .close-btn { color: #777; margin-top: 25px; cursor: pointer; display: block; font-size: 0.9rem; }
+        .close-btn:hover { color: #fff; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>AYOMIDE GOLD EMPIRE</h1>
+    </header>
+
+    <div class="grid">
+        <div class="card" onclick="openModal('Fancy Ladies Bag')">
+            <img src="fancybags.jpg" alt="Fancy Bag">
+            <h3>Fancy Ladies Bag</h3>
+        </div>
+
+        <div class="card" onclick="openModal('Jewelries')">
+            <img src="jewelries.jpg" alt="Jewelries">
+            <h3>Jewelries</h3>
+        </div>
+        
+        <div class="card" onclick="openModal('Ladies Footwears')">
+            <img src="female-footwears.jpg" alt="Ladies Footwears">
+            <h3>Ladies Footwears</h3>
+        </div>
+        
+        <div class="card" onclick="openModal('Rechargeable Fan')">
+            <img src="rechargeable-fan.jpg" alt="Rechargeable Fan">
+            <h3>Rechargeable Fan</h3>
+        </div>
+        
+        <div class="card" onclick="openModal('Leather Bags')">
+            <img src="leather-bags.jpg" alt="Leather Bags">
+            <h3>Leather Bags</h3>
+        </div>
+    </div>
+
+    <div class="modal" id="orderModal" onclick="closeModalOutside(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h2 id="modalTitle" style="color:var(--gold)">Order</h2>
+            <p>Contact us now to secure yours!</p>
+            <a href="tel:+2349130707344" class="order-btn">CALL TO ORDER</a>
+            <span class="close-btn" onclick="closeModal()">Cancel</span>
+        </div>
+    </div>
+
+    <script>
+        function openModal(itemName) {
+            document.getElementById('modalTitle').innerText = "Order " + itemName;
+            document.getElementById('orderModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('orderModal').style.display = 'none';
+        }
+
+        // Closes the modal if you click the dark background area
+        function closeModalOutside(event) {
+            if (event.target.id === "orderModal") {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
